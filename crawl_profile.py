@@ -9,6 +9,8 @@ from util.datasaver import Datasaver
 from util.extractor import extract_information
 from util.extractor_posts import InstagramPost
 from util.settings import Settings
+from log_stats import log_stats
+
 
 
 with SetupBrowserEnvironment() as browser:
@@ -21,5 +23,8 @@ with SetupBrowserEnvironment() as browser:
         Datasaver.save_profile_json(username, information.to_dict())
         print ("Number of users who commented on their profile is ", len(user_commented_list),"\n")
 
-        Datasaver.save_profile_commenters_txt(username, user_commented_list)
-        print ("\nFinished. The json file and nicknames of users who commented were saved in profiles directory.\n")
+        # Datasaver.save_profile_commenters_txt(username, user_commented_list)
+        # print ("\nFinished. The json file and nicknames of users who commented were saved in profiles directory.\n")
+    print("finished extracting jsons.")
+    print("loading to csv")
+    log_stats()
